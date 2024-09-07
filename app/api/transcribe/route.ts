@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-  project: process.env.NEXT_PUBLIC_OPENAI_PROJECT_ID,
+  //   project: process.env.NEXT_PUBLIC_OPENAI_PROJECT_ID,
 });
 
 const conversationMemory: any = {};
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
         content: [
           {
             type: "text",
-            text: "YOU ARE PROVIDED WITH A IMAGE FROM USER. PLEASE DESCRIBE THE IMAGE.",
+            text: "YOU ARE PROVIDED WITH A IMAGE FROM USER. PLEASE TRANSCRIBE THE IMAGE.",
           },
           {
             type: "image_url",
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
       });
       console.log(imageUrl);
       const response = await openai.chat.completions.create({
-        model: "gpt-4o-2024-08-06",
+        model: "gpt-4o-mini",
         messages: [
           {
             role: "user",
