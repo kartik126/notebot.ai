@@ -8,16 +8,26 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { currentImageUrlAtom } from "@/store/atoms/atoms";
+import axios from "axios";
 const Editor = dynamic(() => import("@/components/Editor/Editor"), {
   ssr: false,
 });
 export default function Home() {
   const currentImageUrl = useRecoilValue(currentImageUrlAtom);
+  const [content, setContent] = useState<string | null>(null);
   const [renderEditor, setRenderEditor] = useState(false);
-
+  const getImageTranscription = async (url: string) => {
+    console.log(url);
+    const res = await axios.post("/api/transcribe", { imageUrl: url });
+    return res.data.markdownString;
+  };
   useEffect(() => {
     if (currentImageUrl) {
-      setRenderEditor(true);
+      const resopnse = getImageTranscription(currentImageUrl);
+      resopnse.then((data) => {
+        setContent(data);
+        setRenderEditor(true);
+      });
     }
   }, [currentImageUrl]);
   return (
@@ -30,7 +40,7 @@ export default function Home() {
             <Editor
               editable={true}
               onChange={() => null}
-              initialContent={"# You are great"}
+              initialContent={content}
             />
           </div>
         )}

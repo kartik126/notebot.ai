@@ -9,11 +9,8 @@ export async function POST(req: NextRequest) {
 
       const response = await gpt.transcribeImage(imageUrl);
 
-      const aiResponse = response.choices[0].message.content;
-
-      return NextResponse.json({
-        text: aiResponse,
-      });
+      const aiResponse = response.choices[0].message.parsed;
+      return NextResponse.json(aiResponse);
     } catch (error) {
       console.error("Error calling OpenAI:", error);
       return NextResponse.error();
