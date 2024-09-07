@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { MenuIcon, NotepadTextIcon } from "@/assets/Icons/Icons";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function Navbar() {
   return (
@@ -14,34 +15,39 @@ export default function Navbar() {
         <NotepadTextIcon className="w-6 h-6" />
         <span>Notebot.ai</span>
       </Link>
-      <nav className="hidden gap-4 md:flex">
-        <Link
+      <nav className="hidden gap-4 md:flex items-center">
+        {/* <Link
           href="#"
           className="text-sm font-medium hover:underline"
           prefetch={false}
         >
           Features
-        </Link>
-        <Link
+        </Link> */}
+        {/* <Link
           href="#"
           className="text-sm font-medium hover:underline"
           prefetch={false}
         >
           Pricing
-        </Link>
-        <Link
+        </Link> */}
+        {/* <Link
           href="#"
           className="text-sm font-medium hover:underline"
           prefetch={false}
         >
           About
-        </Link>
+        </Link> */}
         <Link
           href="#"
           className="text-sm font-medium hover:underline"
           prefetch={false}
         >
           Contact
+        </Link>
+        <Link target="_blank" href="https://github.com/kartik126/notebot.ai">
+          <div>
+            <Icon className="w-10 h-10" icon="mdi:github" />
+          </div>
         </Link>
       </nav>
       <Sheet>
@@ -53,27 +59,27 @@ export default function Navbar() {
         </SheetTrigger>
         <SheetContent className="md:hidden">
           <div className="grid gap-4 p-4">
-            <Link
+            {/* <Link
               href="#"
               className="text-sm font-medium hover:underline"
               prefetch={false}
             >
               Features
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               href="#"
               className="text-sm font-medium hover:underline"
               prefetch={false}
             >
               Pricing
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               href="#"
               className="text-sm font-medium hover:underline"
               prefetch={false}
             >
               About
-            </Link>
+            </Link> */}
             <Link
               href="#"
               className="text-sm font-medium hover:underline"
