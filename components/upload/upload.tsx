@@ -1,22 +1,32 @@
+import { uploadImage } from "@/firebase/firebase";
+import { currentImageUrlAtom } from "@/store/atoms/atoms";
 import { JSX, SVGProps } from "react";
+import { useRecoilState } from "recoil";
 
 export default function Upload() {
+  const [currentImageUrl, setCurrentImageUrl] =
+    useRecoilState(currentImageUrlAtom);
+  const uploadFile = async (file: File) => {
+    const url = await uploadImage(file);
+    setCurrentImageUrl(url);
+    console.log(url);
+  };
   return (
-
-      <div className="flex justify-center pt-5">
-        <div className="flex flex-col justify-center space-y-4">
-          <div className="group relative w-full max-w-md rounded-lg border-2 border-dashed border-muted-foreground p-8 text-center transition-colors hover:border-primary">
-            <CloudUploadIcon className="mx-auto h-12 w-12 text-muted-foreground group-hover:text-primary" />
-            <p className="mt-4 text-sm font-medium text-muted-foreground group-hover:text-primary">
-              Drag and drop your image here, or click to select a file
-            </p>
-            <input
-              type="file"
-              className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-            />
-          </div>
+    <div className="flex justify-center pt-5">
+      <div className="flex flex-col justify-center space-y-4">
+        <div className="group relative w-full max-w-md rounded-lg border-2 border-dashed border-muted-foreground p-8 text-center transition-colors hover:border-primary">
+          <CloudUploadIcon className="mx-auto h-12 w-12 text-muted-foreground group-hover:text-primary" />
+          <p className="mt-4 text-sm font-medium text-muted-foreground group-hover:text-primary">
+            Drag and drop your image here, or click to select a file
+          </p>
+          <input
+            type="file"
+            onChange={(e) => e.target.files && uploadFile(e.target.files[0])}
+            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+          />
         </div>
       </div>
+    </div>
   );
 }
 

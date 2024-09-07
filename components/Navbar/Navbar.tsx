@@ -5,7 +5,7 @@ import { MenuIcon, NotepadTextIcon } from "@/assets/Icons/Icons";
 
 export default function Navbar() {
   return (
-    <header className="flex items-center justify-between w-[92%] mx-auto h-16 bg-background md:px-6">
+    <header className="flex items-center justify-between w-[92%] mx-auto h-16 md:px-6">
       <Link
         href="#"
         className="flex items-center gap-2 text-lg font-semibold"
