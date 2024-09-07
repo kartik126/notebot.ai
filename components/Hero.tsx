@@ -1,6 +1,7 @@
 import React from "react";
 import Upload from "./upload/upload";
 
+
 function Hero() {
   return (
     <div>
@@ -13,7 +14,7 @@ function Hero() {
           streamlining your workflow and boosting productivity.
         </p>
       </div>
-      <Upload />
+      <Upload/>
     </div>
   );
 }
