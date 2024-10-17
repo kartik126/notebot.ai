@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { zodResponseFormat } from "openai/helpers/zod";
+import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { z } from "zod";
 
 const ImageTranscription = z.object({
@@ -24,7 +25,7 @@ export class GPTUtils {
     messages = [],
     model = "gpt-4o-mini",
   }: {
-    messages: any[];
+    messages: ChatCompletionMessageParam[];
     model: string;
   }) {
     const response = await this.openaiClient.chat.completions.create({
@@ -34,7 +35,7 @@ export class GPTUtils {
     return response;
   }
   async transcribeImage(imageUrl: string) {
-    const messages = [
+    const messages: ChatCompletionMessageParam[] = [
       {
         role: "user",
         content:
@@ -55,7 +56,7 @@ export class GPTUtils {
     ];
     const response = await this.openaiClient.beta.chat.completions.parse({
       model: "gpt-4o-2024-08-06",
-      messages: messages as any,
+      messages: messages,
       response_format: zodResponseFormat(
         ImageTranscription,
         "image_transcription"

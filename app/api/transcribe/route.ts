@@ -5,9 +5,9 @@ export async function POST(req: NextRequest) {
   if (req.method === "POST") {
     try {
       const { imageUrl } = await req.json();
-      const gpt = new GPTUtils();
+      const gptClient = new GPTUtils();
 
-      const response = await gpt.transcribeImage(imageUrl);
+      const response = await gptClient.transcribeImage(imageUrl);
 
       const aiResponse = response.choices[0].message.parsed;
       return NextResponse.json(aiResponse);
