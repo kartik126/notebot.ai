@@ -4,8 +4,7 @@ import { JSX, SVGProps } from "react";
 import { useRecoilState } from "recoil";
 
 export default function Upload() {
-  const [currentImageUrl, setCurrentImageUrl] =
-    useRecoilState(currentImageUrlAtom);
+  const [, setCurrentImageUrl] = useRecoilState(currentImageUrlAtom);
   const uploadFile = async (file: File) => {
     const url = await uploadImage(file);
     setCurrentImageUrl(url);
